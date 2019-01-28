@@ -60,35 +60,40 @@ const contentTextArray = Object
   .map(e => e[1]);
 
 // POPULATE A TAGS
-let navLinks = document.querySelectorAll('nav a');
-let i = 0;
-navLinks.forEach(element => {
+function fillNav() {
+  let navLinks = document.querySelectorAll('nav a');
+  let i = 0;
+  navLinks.forEach(element => {
     element.textContent = navLinkNames[i];
     i++;
   });
+}
+fillNav();
 
 // CTA CONTENT
 document.querySelector('.cta-text h1').textContent = siteContent.cta.h1;
 document.querySelector('.cta-text button').textContent = siteContent.cta.button;
 document.getElementById('cta-img').setAttribute('src', siteContent["cta"]["img-src"]);
 
-// FILL CONTENT CARD TITLES
-let contentTitles = document.querySelectorAll('.text-content h4');
-i=0;
-contentTitles.forEach(element => {
-  element.textContent = contentTitleArray[i];
-  i++;
-});
-
-// FILL CONTENT CARD TEXT
-let contentText = document.querySelectorAll('.text-content p');
-i=0;
-console.log(contentText);
-contentText.forEach(element => {
-  element.textContent = contentTextArray[i];
-  i++;
-});
-
+// FILL CONTENT CARDS
+function fillContentCards() {
+  // TITLES
+  let contentTitles = document.querySelectorAll('.text-content h4');
+  let i=0;
+  contentTitles.forEach(element => {
+    element.textContent = contentTitleArray[i];
+    i++;
+  });
+  //TEXT
+  let contentText = document.querySelectorAll('.text-content p');
+  i=0;
+  console.log(contentText);
+  contentText.forEach(element => {
+    element.textContent = contentTextArray[i];
+    i++;
+  });
+}
+fillContentCards();  
 
 // MIDDLE IMAGE
 let middleImg = document
