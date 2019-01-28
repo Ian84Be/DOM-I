@@ -39,7 +39,24 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
+// GENERATE ARRAY FOR NAV TITLES
+const navLinkNames = Object
+  .entries(siteContent.nav)
+  .filter(e => e[0].includes('nav-item'))
+  .map(e => e[1]);
+
+// POPULATE A TAGS
+let navLinks = document.querySelectorAll('nav a');
+let i = 0;
+navLinks.forEach(element => {
+    element.textContent = navLinkNames[i];
+    i++;
+  });
+
+document.querySelector('.cta-text h1').textContent = siteContent.cta.h1;
+document.querySelector('.cta-text button').textContent = siteContent.cta.button;
+document.getElementById('cta-img').setAttribute('src', siteContent["cta"]["img-src"]);
 
 
