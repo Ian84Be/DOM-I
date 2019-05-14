@@ -42,24 +42,27 @@ const siteContent = {
 // logo.setAttribute('src', siteContent["nav"]["img-src"]);
 document.getElementById("logo-img").src = siteContent["nav"]["img-src"];
 
+console.log(
+  Object.entries(siteContent["main-content"])
+    // .filter(item => item[0].includes('nav-item'))
+    .map(item => item[1])
+);
 
 // ARRAYZER
   function arrayzer(content, tag) {
     return Object
     .entries(siteContent[content])
-    .filter(e => e[0].includes(tag))
-    .map(e => e[1]);
+    .filter(item => item[0].includes(tag))
+    .map(item => item[1]);
   }
 
 // NAV
 function fillNav() {
   const navLinkNames = arrayzer('nav', 'nav-item');
   let navLinks = document.querySelectorAll('nav a');
-  let i = 0;
-  navLinks.forEach(e => {
+  navLinks.forEach((e,i) => {
     e.style = 'color:green;'
     e.textContent = navLinkNames[i];
-    i++;
   });
 }
 fillNav();
@@ -79,27 +82,25 @@ navNode.prepend(prependix);
 navNode.appendChild(appendix);
 
 // CTA CONTENT
-// document.querySelector('.cta-text h1').textContent = siteContent.cta.h1;
-document.querySelector('.cta-text h1').innerHTML = "DOM<BR>IS<BR>AWESOME";
+document.querySelector('.cta-text h1').textContent = siteContent.cta.h1;
+// document.querySelector('.cta-text h1').innerHTML = "DOM<BR>IS<BR>AWESOME";
+// innerHTML has been deprecated due to a security vulnerability
+
 document.querySelector('.cta-text button').textContent = siteContent.cta.button;
 document.getElementById('cta-img').setAttribute('src', siteContent["cta"]["img-src"]);
 
 //MAIN CONTENT
 function fillContentCards() {
-  let i=0;
   const headerText = arrayzer('main-content', 'h4');
   let headers = document.querySelectorAll('.text-content h4');
-  headers.forEach(e => {
+  headers.forEach((e,i) => {
     e.textContent = headerText[i];
-    i++;
   });
   
-  i=0;
   const contentText = arrayzer('main-content', 'content');
   let contentP = document.querySelectorAll('.text-content p');
-  contentP.forEach(e => {
+  contentP.forEach((e,i) => {
     e.textContent = contentText[i];
-    i++;
   });
 }
 fillContentCards();  
